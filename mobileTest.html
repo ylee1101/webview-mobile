@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-152.png">
+    <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Added link to the jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Added a link to Bootstrap-->
+
+
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="application-name" content="">
+    <link rel="stylesheet" type="text/css" href="mobileTest.css">
+    <title>Login Title</title>
+</head>
+
+<body>
+    <h2 id="header">Inspector Camera Testing</h2>
+    <div class="questions">
+        <!-- upload section -->
+        <div class="buttons">
+            <form method="get" action="">
+                <div class="camera">
+                    <input id="button" type="file" accept="image/*;capture=camera" onchange="readURL(this);">
+                    <!-- <img class="cameraIcon" src="cameraIcon.png" alt="cameraIcon"> -->
+                </div>
+            </form>
+        </div>
+        <!-- display uploaded image section -->
+        <div>
+            <img href="" id="uploadedImage" src="cameraIcon.png" alt="uploadedImage">
+
+            <!-- <a href="javascript:setImageVisible('myImageId', true)">show image</a>
+            <a href="javascript:setImageVisible('myImageId', false)">hide image</a> -->
+
+        </div>
+    </div>
+
+    <script>
+
+        //init for hiding image
+        $(document).ready(function(){
+            // $("#button").click(function(){
+                $("#uploadedImage").hide();
+            // });
+            console.log("hi")
+            
+        });
+
+        //mobile opt scripting
+        window.addEventListener("load", function () { window.scrollTo(0, 0); });
+        document.addEventListener("touchmove", function (e) { e.preventDefault() });
+
+        var body = document.documentElement;
+        if (body.requestFullscreen) {
+            body.requestFullscreen();
+        } else if (body.webkitrequestFullscreen) {
+            body.webkitrequestFullscreen();
+        } else if (body.mozrequestFullscreen) {
+            body.mozrequestFullscreen();
+        } else if (body.msrequestFullscreen) {
+            body.msrequestFullscreen();
+        }
+
+        // Image upload with input and img tags 
+        function readURL(input) {
+            console.log("input", input);
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#uploadedImage')
+                        .attr('src', e.target.result);
+                        console.log("e", e)
+                };
+                console.log("reader", reader)
+                reader.readAsDataURL(input.files[0]);
+                
+
+                // $(reader).click(function(){
+                    $("#uploadedImage").show();
+                    console.log("hello")
+                // });
+
+            }
+        }
+
+        // To hide and show the uploaded image
+        function setImageVisible(id, visible) {
+            console.log(id, visible)
+            var img = document.getElementById(id);
+            img.style.visibility = (visible ? 'visible' : 'hidden');
+        }
+
+        
+
+    </script>
+
+</body>
+
+</html>
